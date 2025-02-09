@@ -1,6 +1,5 @@
-
 import React from 'react';
-import PhotoList from './components/PhotoList';
+import PhotoListItem from './components/PhotoListItem';
 import './App.scss';
 
 const sampleDataForPhotoListItem = {
@@ -16,7 +15,7 @@ const sampleDataForPhotoListItem = {
 
 const App = () => (
   <div className="App">
-    <PhotoList samplePhoto={sampleDataForPhotoListItem} />
+    <PhotoListItem {...sampleDataForPhotoListItem} />
   </div>
 );
 
