@@ -16,3 +16,8 @@
   padding: 7px;
   top: 2px;
 }
+
+.photo-list__item {
+  position: relative; /* Important for absolute positioning of child elements */
+  /* ...your existing styles... */
+}
