@@ -1,11 +1,9 @@
-// frontend/src/App.jsx
 import React from 'react';
-import HomeRoute from './components/HomeRoute';
-import TopNavigationBar from './components/TopNavigationBar';
-import TopicList from './components/TopicList';
-import PhotoList from './components/PhotoList';
-import './App.scss';
+import TopNavigationBar from './TopNavigationBar';
+import PhotoList from './PhotoList'; 
+import '../styles/HomeRoute.scss';
 
+// Sample photo data (you can also pass this in as props from App if you prefer)
 const sampleDataForPhotoList = [
   {
     id: "1",
@@ -30,26 +28,13 @@ const sampleDataForPhotoList = [
   },
 ];
 
-const topicsData = [
-  { id: 1, slug: "topic-1", title: "Nature" },
-  { id: 2, slug: "topic-2", title: "Travel" },
-  { id: 3, slug: "topic-3", title: "People" },
-];
-
-const App = () => {
+const HomeRoute = () => {
   return (
-    <div className="App">
-       <HomeRoute />
+    <div className="home-route">
       <TopNavigationBar />
-      <TopicList topics={topicsData} />
       <PhotoList photos={sampleDataForPhotoList} />
     </div>
   );
 };
 
-export default App;
-
-
-
-
-
+export default HomeRoute;
