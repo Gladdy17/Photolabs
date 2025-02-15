@@ -1,7 +1,8 @@
 // frontend/src/App.jsx
 import React from 'react';
+import TopNavigationBar from './components/TopNavigationBar';
+import TopicList from './components/TopicList';
 import PhotoList from './components/PhotoList';
-import TopicList from './components/TopicList'; // <-- Add this line
 import './App.scss';
 
 const sampleDataForPhotoList = [
@@ -28,10 +29,17 @@ const sampleDataForPhotoList = [
   },
 ];
 
+const topicsData = [
+  { id: 1, slug: "topic-1", title: "Nature" },
+  { id: 2, slug: "topic-2", title: "Travel" },
+  { id: 3, slug: "topic-3", title: "People" },
+];
+
 const App = () => {
   return (
     <div className="App">
-      <TopicList />
+      <TopNavigationBar />
+      <TopicList topics={topicsData} />
       <PhotoList photos={sampleDataForPhotoList} />
     </div>
   );
