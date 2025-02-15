@@ -1,39 +1,43 @@
-// App.jsx
+// frontend/src/App.jsx
 import React from 'react';
-import PhotoListItem from './components/PhotoListItem';
+import PhotoList from './components/PhotoList';
 import './App.scss';
 
-const sampleDataForPhotoListItem = {
-  id: "1",
-  location: { city: "Montreal", country: "Canada" },
-  // Just use a leading slash if the files are in public/
-  imageSource: "/Image-1-Regular.jpeg",
-  username: "Joe Example",
-  profile: "/profile-1.jpg"
-};
+const sampleDataForPhotoList = [
+  {
+    id: "1",
+    location: { city: "Montreal", country: "Canada" },
+    imageSource: "/Image-1-Regular.jpeg",
+    username: "Joe Example",
+    profile: "/profile-1.jpg",
+  },
+  {
+    id: "2",
+    location: { city: "Toronto", country: "Canada" },
+    imageSource: "/Image-2-Regular.jpeg",
+    username: "Jane Doe",
+    profile: "/profile-2.jpg",
+  },
+  {
+    id: "3",
+    location: { city: "Vancouver", country: "Canada" },
+    imageSource: "/Image-3-Regular.jpeg",
+    username: "Sam Smith",
+    profile: "/profile-3.jpg",
+  },
+];
 
 const App = () => {
-  const photos = new Array(3).fill(null);
-
   return (
     <div className="App">
-      <div className="photo-list">
-        {photos.map((_, index) => (
-          <PhotoListItem
-            key={index}
-            photoId={index + 1}
-            imageSource={sampleDataForPhotoListItem.imageSource}
-            username={sampleDataForPhotoListItem.username}
-            location={sampleDataForPhotoListItem.location}
-            profile={sampleDataForPhotoListItem.profile}
-          />
-        ))}
-      </div>
+      <PhotoList photos={sampleDataForPhotoList} />
     </div>
   );
 };
 
 export default App;
+
+
 
 
 
