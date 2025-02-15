@@ -1,19 +1,21 @@
-// frontend/src/components/TopNavigationBar.jsx
+// TopNavigationBar.jsx
 import React from 'react';
 import TopicList from './TopicList';
 import FavBadge from './FavBadge';
 import '../styles/TopNavigationBar.scss';
 
-const TopNavigationBar = ({ topics }) => {
+const TopNavigationBar = ({ favourites, topics }) => {
   return (
     <div className="top-nav-bar">
       <span className="top-nav-bar__logo">PhotoLabs</span>
-      {/* Pass the topics prop down to TopicList */}
       <TopicList topics={topics} />
-      <FavBadge count={3} />
+
+      {/* Pass the number of favourited photos to FavBadge */}
+      <FavBadge count={favourites.length} />
     </div>
   );
 };
 
 export default TopNavigationBar;
+
 
