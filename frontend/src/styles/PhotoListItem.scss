@@ -65,4 +65,12 @@
   color: red;
 }
 
+/* frontend/src/styles/PhotoListItem.scss */
+.photo-list__user-profile {
+  width: 40px;       /* Adjust as needed */
+  height: 40px;      /* Adjust as needed */
+  object-fit: cover; /* Ensures the image is cropped nicely if it's not square */
+  border-radius: 50%; /* Makes it circular */
+  margin-right: 8px;  /* Optional spacing */
+}
 
