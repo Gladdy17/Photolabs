@@ -1,6 +1,7 @@
 // frontend/src/App.jsx
 import React from 'react';
 import PhotoList from './components/PhotoList';
+import TopicList from './components/TopicList'; // <-- Add this line
 import './App.scss';
 
 const sampleDataForPhotoList = [
@@ -30,6 +31,7 @@ const sampleDataForPhotoList = [
 const App = () => {
   return (
     <div className="App">
+      <TopicList />
       <PhotoList photos={sampleDataForPhotoList} />
     </div>
   );
