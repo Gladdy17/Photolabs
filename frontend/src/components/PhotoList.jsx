@@ -1,18 +1,20 @@
-// frontend/src/components/PhotoList.jsx
+// PhotoList.jsx
 import React from 'react';
 import PhotoListItem from './PhotoListItem';
+import "../styles/PhotoList.scss";
 
 const PhotoList = ({ photos }) => {
   return (
     <div className="photo-list">
       {photos.map(photo => (
         <PhotoListItem
-          key={photo.id}              // React requires a unique key for each list item
+          key={photo.id}
           photoId={photo.id}
-          imageSource={photo.imageSource}
-          username={photo.username}
+          // Match the property names from your mock data:
+          imageSource={photo.urls.regular}
+          username={photo.user.name}    // or photo.user.username
           location={photo.location}
-          profile={photo.profile}
+          profile={photo.user.profile}
         />
       ))}
     </div>
@@ -20,5 +22,6 @@ const PhotoList = ({ photos }) => {
 };
 
 export default PhotoList;
+
 
 

@@ -4,6 +4,8 @@ import HomeRoute from './components/HomeRoute';
 import TopNavigationBar from './components/TopNavigationBar';
 import TopicList from './components/TopicList';
 import PhotoList from './components/PhotoList';
+import photos from './mocks/photos';
+import topics from './mocks/topics';
 import './App.scss';
 
 const sampleDataForPhotoList = [
@@ -39,10 +41,10 @@ const topicsData = [
 const App = () => {
   return (
     <div className="App">
-       <HomeRoute />
-      <TopNavigationBar />
-      <TopicList topics={topicsData} />
-      <PhotoList photos={sampleDataForPhotoList} />
+      <HomeRoute photos={photos} topics={topics} />
+      {/* <TopNavigationBar /> */}
+      {/* <TopicList topics={topicsData} />
+      <PhotoList photos={sampleDataForPhotoList} /> */}
     </div>
   );
 };
