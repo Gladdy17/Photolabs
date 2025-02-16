@@ -3,8 +3,10 @@ import React from 'react';
 import '../styles/PhotoDetailsModal.scss';
 import closeSymbol from '../assets/closeSymbol.svg';
 
-const PhotoDetailsModal = ({ onClose }) => {
-  // Close if user clicks on the overlay (outside the content box)
+const PhotoDetailsModal = ({ photo, onClose }) => {
+  // Log the photo data for debugging
+  console.log('Selected photo data:', photo);
+
   const handleOverlayClick = (e) => {
     if (e.target.classList.contains('photo-details-modal')) {
       onClose();
@@ -21,7 +23,6 @@ const PhotoDetailsModal = ({ onClose }) => {
           <img src={closeSymbol} alt="Close symbol" />
         </button>
         <div className="photo-details-modal__body">
-          {/* A plus sign (or any placeholder) to indicate blank content */}
           <div className="photo-details-modal__icon">+</div>
         </div>
       </div>
@@ -30,5 +31,6 @@ const PhotoDetailsModal = ({ onClose }) => {
 };
 
 export default PhotoDetailsModal;
+
 
 
