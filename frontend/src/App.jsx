@@ -1,26 +1,25 @@
 // frontend/src/App.jsx
-import React, { useState } from 'react';
+import React from 'react';
 import HomeRoute from './components/HomeRoute';
-import PhotoDetailsModal from './routes/PhotoDetailsModal'; // The modal component
+import PhotoDetailsModal from './routes/PhotoDetailsModal';
+import useApplicationData from './hooks/useApplicationData'; // Import the custom hook
 import photos from './mocks/photos';
 import topics from './mocks/topics';
 import './App.scss';
 
 const App = () => {
-  // Global state for favourited photos (an array of photo IDs)
-  const [favourites, setFavourites] = useState([]);
-  // State for the currently selected photo (for the modal)
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
+  // Destructure the state and actions from the custom hook
+  const {
+    state,
+    updateToFavPhotoIds,
+    setPhotoSelected,
+    onClosePhotoDetailsModal
+  } = useApplicationData();
 
-  // Handler to open the modal with a specific photo
-  const handleSelectPhoto = (photo) => {
-    setSelectedPhoto(photo);
-  };
-
-  // Handler to close the modal
-  const handleCloseModal = () => {
-    setSelectedPhoto(null);
-  };
+  // If you need to store or pass photos/topics, you can do so directly here
+  // or integrate them into your custom hook as well.
+  const favourites = state.favourites;
+  const selectedPhoto = state.selectedPhoto;
 
   return (
     <div className="App">
@@ -28,23 +27,23 @@ const App = () => {
         photos={photos}
         topics={topics}
         favourites={favourites}
-        setFavourites={setFavourites}
-        onSelectPhoto={handleSelectPhoto}
+        setFavourites={updateToFavPhotoIds}  // Use the hook’s function to toggle favourites
+        onSelectPhoto={setPhotoSelected}
       />
-      {/* Conditionally render the modal if a photo is selected */}
       {selectedPhoto && (
         <PhotoDetailsModal
-        photo={selectedPhoto}
-        onClose={handleCloseModal}
-        favourites={favourites}
-        setFavourites={setFavourites}
-  />
-)}
+          photo={selectedPhoto}
+          onClose={onClosePhotoDetailsModal}
+          favourites={favourites}
+          setFavourites={updateToFavPhotoIds}
+        />
+      )}
     </div>
   );
 };
 
 export default App;
+
 
 
 
