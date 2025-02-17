@@ -1,27 +1,21 @@
 // frontend/src/components/PhotoFavButton.jsx
-import React, { useState } from 'react';
+import React from 'react';
 import "../styles/PhotoFavButton.scss";
 
-const PhotoFavButton = () => {
-  const [liked, setLiked] = useState(false);
-
-  const handleClick = () => {
-    setLiked(!liked);
-    console.log("Favourite clicked:", !liked);
-  };
-
+const PhotoFavButton = ({ onClick, isFav }) => {
   return (
     <div className="photo-list__fav-icon">
       <button
-        onClick={handleClick}
-        className={`photo-list__fav-icon-svg ${liked ? 'active' : ''}`}
+        onClick={onClick}
+        className={`photo-list__fav-icon-svg ${isFav ? 'active' : ''}`}
         aria-label="Toggle Favourite"
       >
-        {liked ? '❤️' : '🤍'}
+        {isFav ? '❤️' : '🤍'}
       </button>
     </div>
   );
 };
 
 export default PhotoFavButton;
+
 

@@ -34,15 +34,18 @@ const App = () => {
       {/* Conditionally render the modal if a photo is selected */}
       {selectedPhoto && (
         <PhotoDetailsModal
-          photo={selectedPhoto}
-          onClose={handleCloseModal}
-        />
-      )}
+        photo={selectedPhoto}
+        onClose={handleCloseModal}
+        favourites={favourites}
+        setFavourites={setFavourites}
+  />
+)}
     </div>
   );
 };
 
 export default App;
+
 
 
 
