@@ -80,7 +80,17 @@ export default function useApplicationData() {
     dispatch({ type: ACTIONS.CLOSE_MODAL });
   };
 
-  // Fetch photo data from API and dispatch to reducer
+  // Fetch photos for a specific topic using the correct endpoint
+  const onLoadTopic = (topicId) => {
+    fetch(`/api/topics/photos/${topicId}`)
+      .then(response => response.json())
+      .then(data => {
+        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data });
+      })
+      .catch(err => console.error("Error fetching photos for topic:", err));
+  };
+
+  // Initial fetch of all photos
   useEffect(() => {
     fetch("/api/photos")
       .then(response => response.json())
@@ -90,7 +100,7 @@ export default function useApplicationData() {
       .catch(err => console.error("Error fetching photos:", err));
   }, []);
 
-  // Fetch topic data from API and dispatch to reducer
+  // Initial fetch of all topics
   useEffect(() => {
     fetch("/api/topics")
       .then(response => response.json())
@@ -104,7 +114,10 @@ export default function useApplicationData() {
     state,
     updateToFavPhotoIds,
     setPhotoSelected,
-    onClosePhotoDetailsModal
+    onClosePhotoDetailsModal,
+    onLoadTopic
   };
 }
+
+
 
