@@ -74,3 +74,6 @@
   margin-right: 8px;  /* Optional spacing */
 }
 
+.photo-list__fav-icon-svg.active svg path {
+  fill: red;
+}

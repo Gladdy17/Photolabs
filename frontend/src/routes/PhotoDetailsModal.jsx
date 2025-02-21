@@ -13,7 +13,9 @@ const PhotoDetailsModal = ({ photo, onClose, favourites, setFavourites }) => {
     }
   };
 
-  const toggleFavourite = () => {
+  // Toggle favourite for the main photo
+  const toggleMainFav = (e) => {
+    e.stopPropagation();
     if (favourites.includes(photo.id)) {
       setFavourites(favourites.filter(id => id !== photo.id));
     } else {
@@ -21,56 +23,63 @@ const PhotoDetailsModal = ({ photo, onClose, favourites, setFavourites }) => {
     }
   };
 
-  const isFav = favourites.includes(photo.id);
+  const mainIsFav = favourites.includes(photo.id);
+
+  // Convert similar_photos object to an array
   const similarPhotos = photo.similar_photos ? Object.values(photo.similar_photos) : [];
+
+  // Toggle favourite for a similar photo
+  const toggleSimilarFav = (simPhotoId, e) => {
+    e.stopPropagation();
+    if (favourites.includes(simPhotoId)) {
+      setFavourites(favourites.filter(id => id !== simPhotoId));
+    } else {
+      setFavourites([...favourites, simPhotoId]);
+    }
+  };
 
   return (
     <div className="photo-details-modal__overlay" onClick={handleOverlayClick}>
       <div className="photo-details-modal__content">
-
-        {/* Close Button positioned via CSS (top-right) */}
+        
+        {/* Close Button (Top-Right) */}
         <button
           className="photo-details-modal__close-button"
           onClick={onClose}
         >
-          <img
-            src={closeSymbol}
-            alt="Close symbol"
-          />
+          <img src={closeSymbol} alt="Close symbol" />
         </button>
 
         <div className="photo-details-modal__body">
-          {/* Large Photo */}
-          <div className="photo-details-modal__large-photo">
+          
+          {/* Main photo container (position: relative) */}
+          <div className="photo-details-modal__image-container">
             <img
               src={photo.urls.full}
               alt={`Large photo by ${photo.user.name}`}
               className="photo-details-modal__image"
             />
+
+            {/* Heart icon overlay for the main photo */}
+            <PhotoFavButton
+              onClick={toggleMainFav}
+              isFav={mainIsFav}
+              className="photo-details-modal__fav-icon"
+            />
           </div>
 
-          {/* Info Bar: Profile + Name/Location + Heart Icon */}
+          {/* Photographer info (optional) */}
           <div className="photo-details-modal__info-bar">
             <img
               className="photo-details-modal__profile"
               src={photo.user.profile}
               alt={`${photo.user.name}'s profile`}
             />
-
             <div className="photo-details-modal__profile-info">
-              <div className="photo-details-modal__profile-name">
-                {photo.user.name}
-              </div>
+              <div className="photo-details-modal__profile-name">{photo.user.name}</div>
               <div className="photo-details-modal__profile-location">
                 {photo.location.city}, {photo.location.country}
               </div>
-            </div>
-
-            <div className="photo-details-modal__favourite">
-              <PhotoFavButton
-                onClick={(e) => { e.stopPropagation(); toggleFavourite(); }}
-                isFav={isFav}
-              />
             </div>
           </div>
 
@@ -78,18 +87,32 @@ const PhotoDetailsModal = ({ photo, onClose, favourites, setFavourites }) => {
           <div className="photo-details-modal__similar-photos">
             <h3>Similar Photos</h3>
             <div className="photo-details-modal__similar-list">
-              {similarPhotos.map(simPhoto => (
-                <div key={simPhoto.id} className="photo-details-modal__similar-item">
-                  <img
-                    src={simPhoto.urls.regular}
-                    alt={`Similar photo by ${simPhoto.user.name}`}
-                    className="photo-details-modal__image"
-                  />
-                </div>
-              ))}
+              {similarPhotos.map(simPhoto => {
+                const simIsFav = favourites.includes(simPhoto.id);
+                
+                return (
+                  <div key={simPhoto.id} className="photo-details-modal__similar-item">
+                    {/* Each similar photo container (position: relative) */}
+                    <div className="photo-details-modal__image-container">
+                      <img
+                        src={simPhoto.urls.regular}
+                        alt={`Similar photo by ${simPhoto.user.name}`}
+                        className="photo-details-modal__image"
+                      />
+                      
+                      {/* Heart icon overlay for the similar photo */}
+                      <PhotoFavButton
+                        onClick={(e) => toggleSimilarFav(simPhoto.id, e)}
+                        isFav={simIsFav}
+                        className="photo-details-modal__fav-icon"
+                      />
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
-
+          
         </div>
       </div>
     </div>
