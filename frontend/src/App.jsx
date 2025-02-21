@@ -3,8 +3,6 @@ import React from 'react';
 import HomeRoute from './components/HomeRoute';
 import PhotoDetailsModal from './routes/PhotoDetailsModal';
 import useApplicationData from './hooks/useApplicationData';
-import photos from './mocks/photos';
-import topics from './mocks/topics';
 import './App.scss';
 
 const App = () => {
@@ -12,16 +10,16 @@ const App = () => {
     state,
     updateToFavPhotoIds,
     setPhotoSelected,
-    onClosePhotoDetailsModal
+    onClosePhotoDetailsModal,
   } = useApplicationData();
 
-  const { favourites, selectedPhoto } = state;
+  const { favourites, selectedPhoto, photoData, topicData } = state;
 
   return (
     <div className="App">
       <HomeRoute
-        photos={photos}
-        topics={topics}
+        photos={photoData}
+        topics={topicData}
         favourites={favourites}
         setFavourites={updateToFavPhotoIds}
         onSelectPhoto={setPhotoSelected}
@@ -39,12 +37,4 @@ const App = () => {
 };
 
 export default App;
-
-
-
-
-
-
-
-
 
