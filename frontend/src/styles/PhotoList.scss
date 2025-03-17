@@ -1,14 +1,21 @@
 .photo-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  list-style-type: none;
+  justify-content: space-evenly; /* or space-between */
+  align-items: flex-start;       /* important to avoid stretching items */
+  gap: 24px;                     /* sets uniform spacing between items */
   margin: 0;
   padding: 0;
 }
 
-.photo-list:after {
-  content: "";
-  flex: 0 1 30%;
-  margin: 5px;
+.photo-list__item {
+  position: relative;
+  /* Remove the large margin and let gap handle spacing */
+  margin: 0;
+  padding: 8px;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  flex: 0 1 300px; /* sets a max card width so multiple can fit per row */
+  box-sizing: border-box;
 }
+
