@@ -36,7 +36,7 @@
   /* Absolutely position the icon in the top-right corner of .photo-list__item */
   position: absolute; 
   top: 8px;
-  right: 8px;
+  left: 8px;
 
   /* Visual styling */
   width: 32px;
@@ -76,4 +76,12 @@
 
 .photo-list__fav-icon-svg.active svg path {
   fill: red;
+}
+
+.photo-list__close-button {
+  position: absolute;
+  top: 8px;     /* adjust as needed */
+  left: 8px;    /* adjust as needed */
+  z-index: 2;   /* higher than the image's z-index */
+  /* additional styling */
 }

@@ -24,20 +24,22 @@
   padding: 16px;
 }
 
-/* Close button positioned at the top right */
+/* Close button positioned at the top-right */
 .photo-details-modal__close-button {
   position: absolute;
-  top: 7px;
-  left: 16px;
+  top: 16px;
+  right: 16px;
   background: none;
   border: none;
   cursor: pointer;
+  z-index: 999; /* Ensure it appears above the image */
 }
 
 .photo-details-modal__close-button img {
-  display: block;
+  display: block; /* Remove extra absolute positioning */
+  width: 24px;    /* Adjust as needed */
+  height: 24px;   /* Adjust as needed */
 }
-
 
 /* Large photo container */
 .photo-details-modal__large-photo {
@@ -129,3 +131,4 @@
   object-fit: contain;
   border-radius: 8px;
 }
+
