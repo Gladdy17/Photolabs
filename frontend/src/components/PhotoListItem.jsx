@@ -1,13 +1,22 @@
-// frontend/src/components/PhotoListItem.jsx
+// PhotoListItem.jsx
 import React from 'react';
 import PhotoFavButton from './PhotoFavButton';
 import "../styles/PhotoListItem.scss";
 
-const PhotoListItem = ({ photo, onSelectPhoto }) => {
+const PhotoListItem = ({ photo, onSelectPhoto, favourites = [], setFavourites }) => {
   const { id, urls, user, location } = photo;
 
   const handleClick = () => {
     onSelectPhoto(photo);
+  };
+
+  const toggleFav = (e) => {
+    e.stopPropagation();
+    if (favourites.includes(id)) {
+      setFavourites(favourites.filter(favId => favId !== id));
+    } else {
+      setFavourites([...favourites, id]);
+    }
   };
 
   return (
@@ -26,12 +35,18 @@ const PhotoListItem = ({ photo, onSelectPhoto }) => {
       />
 
       {/* Favourite (Like) Button */}
-      <PhotoFavButton />
+      <PhotoFavButton 
+        onClick={toggleFav} 
+        isFav={favourites.includes(id)}
+      />
     </div>
   );
 };
 
 export default PhotoListItem;
+
+
+
 
 
 

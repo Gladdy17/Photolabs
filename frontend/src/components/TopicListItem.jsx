@@ -1,10 +1,11 @@
-// frontend/src/components/TopicListItem.jsx
+// TopicListItem.jsx
 import React from 'react';
 import "../styles/TopicListItem.scss";
 
 const TopicListItem = ({ topic, onTopicSelect }) => {
   const handleClick = () => {
-    onTopicSelect(topic.id);
+    // Pass the slug, not the ID
+    onTopicSelect(topic.slug);
   };
 
   return (
@@ -15,5 +16,7 @@ const TopicListItem = ({ topic, onTopicSelect }) => {
 };
 
 export default TopicListItem;
+
+
 
 

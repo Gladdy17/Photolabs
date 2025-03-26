@@ -1,9 +1,9 @@
-// PhotoList.jsx
+// PhotoList.jsx (example snippet)
 import React from 'react';
 import PhotoListItem from './PhotoListItem';
 import "../styles/PhotoList.scss";
 
-const PhotoList = ({ photos, onSelectPhoto }) => {
+const PhotoList = ({ photos, onSelectPhoto, favourites, setFavourites }) => {
   return (
     <div className="photo-list">
       {photos.map(photo => (
@@ -11,6 +11,8 @@ const PhotoList = ({ photos, onSelectPhoto }) => {
           key={photo.id}
           photo={photo}
           onSelectPhoto={onSelectPhoto}
+          favourites={favourites}
+          setFavourites={setFavourites}
         />
       ))}
     </div>
@@ -18,6 +20,7 @@ const PhotoList = ({ photos, onSelectPhoto }) => {
 };
 
 export default PhotoList;
+
 
 
 
