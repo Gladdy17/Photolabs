@@ -1,21 +1,28 @@
+/* PhotoList.scss */
 .photo-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly; /* or space-between */
-  align-items: flex-start;       /* important to avoid stretching items */
-  gap: 24px;                     /* sets uniform spacing between items */
-  margin: 0;
-  padding: 0;
+  /* Switch from flex to grid */
+  display: grid;
+
+  /* Create as many columns as will fit, each at least 250px wide */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
+  /* Spacing between rows and columns */
+  gap: 24px;
+
+  /* Optional: center the grid and limit max width */
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 24px;
 }
 
+/* Each item is now placed into a grid cell, so remove flex-based rules */
 .photo-list__item {
   position: relative;
-  /* Remove the large margin and let gap handle spacing */
   margin: 0;
   padding: 8px;
   border: 1px solid lightgray;
   border-radius: 8px;
-  flex: 0 1 300px; /* sets a max card width so multiple can fit per row */
   box-sizing: border-box;
 }
+
 
