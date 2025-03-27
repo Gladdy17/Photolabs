@@ -5,7 +5,7 @@ import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoFavButton from '../components/PhotoFavButton';
 
 const PhotoDetailsModal = ({ photo, onClose, favourites, setFavourites }) => {
-  console.log('Selected photo data:', photo);
+
 
   const handleOverlayClick = (e) => {
     if (e.target.classList.contains('photo-details-modal__overlay')) {
@@ -40,6 +40,14 @@ const PhotoDetailsModal = ({ photo, onClose, favourites, setFavourites }) => {
     }
   };
 
+
+  const toggleFav = (e) => {
+    e.stopPropagation();
+    console.log(photo.id);
+    setFavourites(photo.id);
+  };
+
+
   return (
     <div className="photo-details-modal__overlay" onClick={handleOverlayClick}>
       <div className="photo-details-modal__content">
@@ -61,8 +69,8 @@ const PhotoDetailsModal = ({ photo, onClose, favourites, setFavourites }) => {
 
             {/* Heart icon overlay for the main photo */}
             <PhotoFavButton
-              onClick={toggleMainFav}
-              isFav={mainIsFav}
+              onClick={toggleFav}
+              isFav={favourites.includes(photo.id)}
               className="photo-details-modal__fav-icon"
             />
           </div>
@@ -104,8 +112,9 @@ const PhotoDetailsModal = ({ photo, onClose, favourites, setFavourites }) => {
 
                       {/* Heart icon overlay for the similar photo */}
                       <PhotoFavButton
-                        onClick={(e) => toggleSimilarFav(simPhoto.id, e)}
-                        isFav={simIsFav}
+                        onClick={() => setFavourites(simPhoto.id)}
+                        //isFav={simIsFav}
+                        isFav={favourites.includes(simPhoto.id)}
                         className="photo-details-modal__fav-icon"
                       />
                     </div>

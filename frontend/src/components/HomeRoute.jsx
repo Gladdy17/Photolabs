@@ -17,8 +17,7 @@ const HomeRoute = ({ photos, topics, favourites, setFavourites, onSelectPhoto })
     ? photos.filter(photo => photo.urls.full.includes(selectedTopicSlug))
     : photos;
 
-  console.log('Selected Topic Slug:', selectedTopicSlug);
-  console.log('Filtered Photos:', filteredPhotos);
+ 
 
   return (
     <div className="home-route">

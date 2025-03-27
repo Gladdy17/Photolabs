@@ -12,11 +12,14 @@ const PhotoListItem = ({ photo, onSelectPhoto, favourites = [], setFavourites })
 
   const toggleFav = (e) => {
     e.stopPropagation();
-    if (favourites.includes(id)) {
-      setFavourites(favourites.filter(favId => favId !== id));
-    } else {
-      setFavourites([...favourites, id]);
-    }
+    console.log('Favourites:', favourites);
+    console.log('ID:', id);
+    setFavourites(id)
+    // if (favourites.includes(id)) {
+    //   setFavourites(favourites.filter(favId => favId !== id));
+    // } else {
+    //   setFavourites([...favourites, id]);
+    // }
   };
 
   return (
