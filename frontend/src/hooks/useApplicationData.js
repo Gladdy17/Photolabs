@@ -82,12 +82,17 @@ export default function useApplicationData() {
 
   // Fetch photos for a specific topic using the correct endpoint
   const onLoadTopic = (topicId) => {
-    fetch(`/api/topics/photos/${topicId}`)
-      .then(response => response.json())
-      .then(data => {
+    fetch(`/api/topics/${topicId}/photos`) // Correct the endpoint if needed
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
         dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data });
       })
-      .catch(err => console.error("Error fetching photos for topic:", err));
+      .catch((err) => console.error("Error loading topic photos:", err));
   };
 
   // Initial fetch of all photos
@@ -112,9 +117,9 @@ export default function useApplicationData() {
 
   return {
     state,
+    onClosePhotoDetailsModal,
     updateToFavPhotoIds,
     setPhotoSelected,
-    onClosePhotoDetailsModal,
     onLoadTopic
   };
 }

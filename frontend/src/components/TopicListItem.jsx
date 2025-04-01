@@ -4,8 +4,8 @@ import "../styles/TopicListItem.scss";
 
 const TopicListItem = ({ topic, onTopicSelect }) => {
   const handleClick = () => {
-    // Pass the slug, not the ID
-    onTopicSelect(topic.slug);
+    // Pass the ID to the onTopicSelect function
+    onTopicSelect(topic.id);
   };
 
   return (

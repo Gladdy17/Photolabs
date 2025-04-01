@@ -7,16 +7,12 @@ const PhotoListItem = ({ photo, onSelectPhoto, favourites = [], setFavourites })
   const { id, urls, user, location } = photo;
 
   const handleClick = () => {
-    onSelectPhoto(photo);
+    onSelectPhoto(photo); // Ensure this function is passed as a prop
   };
 
   const toggleFav = (e) => {
     e.stopPropagation();
-    if (favourites.includes(id)) {
-      setFavourites(favourites.filter(favId => favId !== id));
-    } else {
-      setFavourites([...favourites, id]);
-    }
+    setFavourites(id)
   };
 
   return (
@@ -35,8 +31,8 @@ const PhotoListItem = ({ photo, onSelectPhoto, favourites = [], setFavourites })
       />
 
       {/* Favourite (Like) Button */}
-      <PhotoFavButton 
-        onClick={toggleFav} 
+      <PhotoFavButton
+        onClick={toggleFav}
         isFav={favourites.includes(id)}
       />
     </div>

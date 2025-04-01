@@ -1,34 +1,28 @@
 // frontend/src/App.jsx
 import React from 'react';
-import HomeRoute from './components/HomeRoute';
-import PhotoDetailsModal from './routes/PhotoDetailsModal';
 import useApplicationData from './hooks/useApplicationData';
+import HomeRoute from './routes/HomeRoute';
+import PhotoDetailsModal from './routes/PhotoDetailsModal'; // Import the modal
 import './App.scss';
 
 const App = () => {
-  const {
-    state,
-    updateToFavPhotoIds,
-    setPhotoSelected,
-    onClosePhotoDetailsModal,
-  } = useApplicationData();
-
-  const { favourites, selectedPhoto, photoData, topicData } = state;
+  const { state, setPhotoSelected, onLoadTopic, updateToFavPhotoIds, onClosePhotoDetailsModal } = useApplicationData();
 
   return (
-    <div className="App">
+    <div className="app">
       <HomeRoute
-        photos={photoData}
-        topics={topicData}
-        favourites={favourites}
+        photos={state.photoData}
+        topics={state.topicData}
+        favourites={state.favourites}
         setFavourites={updateToFavPhotoIds}
-        onSelectPhoto={setPhotoSelected}
+        onTopicSelect={onLoadTopic}
+        onSelectPhoto={setPhotoSelected} // Pass it here
       />
-      {selectedPhoto && (
+      {state.selectedPhoto && (
         <PhotoDetailsModal
-          photo={selectedPhoto}
+          photo={state.selectedPhoto}
           onClose={onClosePhotoDetailsModal}
-          favourites={favourites}
+          favourites={state.favourites}
           setFavourites={updateToFavPhotoIds}
         />
       )}
