@@ -12,14 +12,7 @@ const PhotoListItem = ({ photo, onSelectPhoto, favourites = [], setFavourites })
 
   const toggleFav = (e) => {
     e.stopPropagation();
-    console.log('Favourites:', favourites);
-    console.log('ID:', id);
     setFavourites(id)
-    // if (favourites.includes(id)) {
-    //   setFavourites(favourites.filter(favId => favId !== id));
-    // } else {
-    //   setFavourites([...favourites, id]);
-    // }
   };
 
   return (
@@ -38,8 +31,8 @@ const PhotoListItem = ({ photo, onSelectPhoto, favourites = [], setFavourites })
       />
 
       {/* Favourite (Like) Button */}
-      <PhotoFavButton 
-        onClick={toggleFav} 
+      <PhotoFavButton
+        onClick={toggleFav}
         isFav={favourites.includes(id)}
       />
     </div>

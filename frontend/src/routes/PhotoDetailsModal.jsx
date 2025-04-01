@@ -8,63 +8,23 @@ const PhotoDetailsModal = ({ photo, onClose, favourites = [], setFavourites }) =
   const handleOverlayClick = (e) => {
     if (e.target.classList.contains('photo-details-modal__overlay')) {
       onClose();
-      console.log('favourites:', favourites);
     }
   };
 
-  // const toggleFav = (e) => {
-  //   e.stopPropagation();
-  //   if (favourites.includes(photo.id)) {
-  //     setFavourites(favourites.filter((id) => id !== photo.id));
-  //   } else {
-  //     setFavourites([...favourites, photo.id]);
-  //   }
-  // };
-
-  // const toggleFav = (e) => {
-  //   e.stopPropagation();
-  //   console.log('Favourites:', favourites);
-  //   console.log('ID:', id);
-  //   setFavourites(photo.id)
-
-  // };
 
 
-  // const toggleFav = (e) => {
-  //   e.stopPropagation();
-  //   console.log('Favourites:', favourites);
-  //   console.log('Photo ID:', photo.id); // Use photo.id instead of id
-  //   if (favourites.includes(photo.id)) {
-  //     setFavourites(favourites.filter((favId) => favId !== photo.id));
-  //   } else {
-  //     setFavourites([...favourites, photo.id]);
-  //   }
-  // };
-
-  const mainIsFav = favourites.includes(photo.id);
 
   const similarPhotos = photo.similar_photos
     ? Object.values(photo.similar_photos)
     : [];
 
   const toggleSimilarFav = (simPhotoId, e) => {
-    // e.stopPropagation();
-    // if (favourites.includes(simPhotoId)) {
-    //   setFavourites(favourites.filter((id) => id !== simPhotoId));
-    // } else {
-    //   setFavourites([...favourites, simPhotoId]);
-    // }
-    console.log(e);
     e.stopPropagation();
-    console.log(simPhotoId);
     setFavourites(simPhotoId);
   };
 
 
   const toggleFav = (e) => {
-    console.log(e);
-    // e.stopPropagation();
-    console.log(photo.id);
     setFavourites(photo.id);
   };
 
