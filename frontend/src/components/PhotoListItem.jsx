@@ -7,7 +7,7 @@ const PhotoListItem = ({ photo, onSelectPhoto, favourites = [], setFavourites })
   const { id, urls, user, location } = photo;
 
   const handleClick = () => {
-    onSelectPhoto(photo);
+    onSelectPhoto(photo); // Ensure this function is passed as a prop
   };
 
   const toggleFav = (e) => {

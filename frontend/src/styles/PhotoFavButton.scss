@@ -1,4 +1,3 @@
-
 .photo-list__fav-icon {
   position: relative;
   z-index: 10; /* ensure it's above other elements if needed */
@@ -24,5 +23,9 @@
 /* When the button is active, target the SVG inside */
 .photo-list__fav-icon-svg.active .heart-icon {
   fill: red;
+}
+
+.photo-list__fav-icon-svg.active {
+  color: red; // Or your desired color for the active state
 }
 
